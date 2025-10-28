@@ -1,4 +1,4 @@
-﻿namespace Projeto.Tabuleiro {
+﻿namespace Projeto_Tabuleiro {
     class Posicao {
 
         public int Linha { get; set; }

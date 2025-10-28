@@ -1,4 +1,4 @@
-﻿namespace Projeto.Tabuleiro {
+﻿namespace Projeto_Tabuleiro {
     enum Cor {
 
         Branca,

@@ -1,5 +1,5 @@
 ﻿using System;
-using Projeto.Tabuleiro;
+using Projeto_Tabuleiro;
 
 namespace Projeto_Xadrez_Console {
     class Tela {
