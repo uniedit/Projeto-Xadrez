@@ -11,5 +11,10 @@
             _pecas = new Peca[linhas, colunas];
         }
 
+        // Método que permite outras classes acessares a var _pecas, retornando as linhas e as colunas
+        public Peca Peca(int linhas, int colunas) {
+            return _pecas[linhas, colunas];
+        }
+
     }
 }
