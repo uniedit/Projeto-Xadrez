@@ -1,4 +1,6 @@
-﻿namespace Projeto_Tabuleiro {
+﻿using Projeto_Tabuleiro.Exceptions;
+
+namespace Projeto_Tabuleiro {
     class Tabuleiro {
 
         public int Linhas { get; set; }
@@ -16,8 +18,22 @@
             return _pecas[linhas, colunas];
         }
 
+        // Não entendi a sobrecarga
+        public Peca Peca(Posicao pos) {
+            return _pecas[pos.Linha, pos.Coluna];
+        }
+
+        // Metodo que verifica determina posição usando o metodo "ValidarPosicao" para lançar uma excessão caso seja falso
+        public bool ExistePeca(Posicao pos) {
+            ValidarPosicao(pos);
+            return Peca(pos) != null;
+        }
+
         // Jogando a posição "p" na matriz Peca
         public void ColocarPeca(Peca p, Posicao pos) {
+            if (ExistePeca(pos)) {
+                throw new TabuleiroException("Já existe uma peça nessa posição!!");
+            }
             // Modificando a var "_pecas" recebendo os argumentos da classe Posição
             _pecas[pos.Linha, pos.Coluna] = p;
 
@@ -25,5 +41,20 @@
             p.Posicao = pos;
         }
 
+        // Verificação de posição caso saia do numero de linhas ou colunas do Tabuleiro
+        public bool PosicaoValida(Posicao pos) {
+            if (pos.Linha < 0 || pos.Linha >= Linhas || pos.Coluna < 0 || pos.Coluna >= Colunas) {
+                return false;
+            } 
+            return true;
+        }
+
+        // Exception personalizada para detectar posições invalidas
+        public void ValidarPosicao(Posicao pos) {
+            if (!PosicaoValida(pos)) {
+                throw new TabuleiroException("Posição Inválida!");
+            }
+        }
+    
     }
 }
