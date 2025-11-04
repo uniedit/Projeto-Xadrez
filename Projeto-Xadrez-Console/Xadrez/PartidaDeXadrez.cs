@@ -7,11 +7,13 @@ namespace Projeto_Xadrez {
         public Tabuleiro Tab { get; private set; }
         private int _turno;
         private Cor _jogadorAtual;
+        public bool Terminada { get; private set; }
 
         public PartidaDeXadrez() {
             this.Tab = new Tabuleiro(8, 8);
             this._turno = 1;
             this._jogadorAtual = Cor.Branca;
+            this.Terminada = false;
             _colocarPecas();
         }
 

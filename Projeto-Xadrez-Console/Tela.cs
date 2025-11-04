@@ -1,4 +1,5 @@
 ﻿using System;
+using Projeto_Xadrez;
 using Projeto_Tabuleiro;
 
 namespace Projeto_Xadrez_Console {
@@ -24,13 +25,27 @@ namespace Projeto_Xadrez_Console {
                     }
 
                 }
-                CorConsole(" | ");
+
+                // De algum modo fazer essa verificação faz funcionar. Não sei o motivo.
+                if (tab.Peca(l, 7) != null) {
+                    CorConsole("| ");
+                } else {
+                    CorConsole(" | ");
+                }
+
                 Console.Write(8 - l);
                 Console.WriteLine();
             }
             CorConsole("   -----------------");
             Console.WriteLine("");
             Console.WriteLine("    A B C D E F G H");
+        }
+
+        public static PosicaoXadrez LerPosicaoXadrez() {
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha = int.Parse(s[1] + "");
+            return new PosicaoXadrez(coluna, linha);
         }
 
         public static void ImprimirPeca(Peca peca) {
