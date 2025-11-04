@@ -41,6 +41,18 @@ namespace Projeto_Tabuleiro {
             p.Posicao = pos;
         }
 
+        // Método para remover a peça na posição informada
+        public Peca RetirarPeca(Posicao pos) {
+            // Caso seja null, só retorna null
+            if(Peca(pos) == null) {
+                return null;
+            }
+            // Caso passe, ele remove na pos.linha e pos.coluna
+            Peca aux = Peca(pos);
+            _pecas[pos.Linha, pos.Coluna] = null;
+            return aux;
+        }
+
         // Verificação de posição caso saia do numero de linhas ou colunas do Tabuleiro
         public bool PosicaoValida(Posicao pos) {
             if (pos.Linha < 0 || pos.Linha >= Linhas || pos.Coluna < 0 || pos.Coluna >= Colunas) {
