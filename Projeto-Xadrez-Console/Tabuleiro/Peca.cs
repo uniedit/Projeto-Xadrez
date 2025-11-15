@@ -1,5 +1,6 @@
 ﻿namespace Projeto_Tabuleiro {
-    class Peca {
+    // Como tem pelo menos 1 método abstrato, logo a classe é abstrata
+    abstract class Peca {
 
         public Posicao Posicao { get; set; }
         public Tabuleiro Tab { get; protected set; }
@@ -16,6 +17,9 @@
         public void IncrementarQteMovimentos() {
             QteMovimentos++;
         }
+
+        // Método abstrato devido a que qualquer peça tem movimentos possiveis diferentes um dos outros
+        public abstract bool[,] MovimentosPossiveis();
 
     }
 }

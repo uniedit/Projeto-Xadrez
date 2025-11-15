@@ -14,16 +14,7 @@ namespace Projeto_Xadrez_Console {
                 Console.Write(8 - l);
                 CorConsole(" | ");
                 for (int c = 0; c < tab.Colunas; c++) {
-                    if (tab.Peca(l, c) == null) {
-                        if (c == 7) {
-                            Console.Write("-");
-                        } else {
-                            Console.Write("- ");
-                        }
-                    } else {
-                        ImprimirPeca(tab.Peca(l, c));
-                    }
-
+                    ImprimirPeca(tab.Peca(l, c), c);
                 }
 
                 // De algum modo fazer essa verificação faz funcionar. Não sei o motivo.
@@ -41,6 +32,44 @@ namespace Projeto_Xadrez_Console {
             Console.WriteLine("    A B C D E F G H");
         }
 
+        public static void ImprimirTabuleiro(Tabuleiro tab, bool[,] posicoesPossiveis) {
+            Console.WriteLine("    A B C D E F G H");
+            CorConsole("   -----------------");
+            Console.WriteLine();
+
+            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
+
+
+            for (int l = 0; l < tab.Linhas; l++) {
+                Console.Write(8 - l);
+                CorConsole(" | ");
+                for (int c = 0; c < tab.Colunas; c++) {
+                    if (posicoesPossiveis[l, c] == true) {
+                        Console.BackgroundColor = fundoAlterado;
+                    } else {
+                        Console.BackgroundColor = fundoOriginal;
+                    }
+                    ImprimirPeca(tab.Peca(l, c), c);
+                    Console.BackgroundColor = fundoOriginal;
+                }
+
+                // De algum modo fazer essa verificação faz funcionar. Não sei o motivo.
+                if (tab.Peca(l, 7) != null) {
+                    CorConsole("| ");
+                } else {
+                    CorConsole(" | ");
+                }
+
+                Console.Write(8 - l);
+                Console.WriteLine();
+            }
+            CorConsole("   -----------------");
+            Console.WriteLine("");
+            Console.WriteLine("    A B C D E F G H");
+            Console.BackgroundColor = fundoOriginal;
+        }
+
         public static PosicaoXadrez LerPosicaoXadrez() {
             string s = Console.ReadLine();
             char coluna = s[0];
@@ -48,11 +77,21 @@ namespace Projeto_Xadrez_Console {
             return new PosicaoXadrez(coluna, linha);
         }
 
-        public static void ImprimirPeca(Peca peca) {
-            if (peca.Cor == Cor.Branca) {
-                Console.Write(peca + " ");
+        public static void ImprimirPeca(Peca peca, int c) {
+
+            if (peca == null) {
+                if (c == 7) {
+                    Console.Write("-");
+                } else {
+                    Console.Write("-");
+                    Console.Write(" ");
+                }
             } else {
-                CorConsole($"{peca} ");
+                if (peca.Cor == Cor.Branca) {
+                    Console.Write(peca + " ");
+                } else {
+                    CorConsole($"{peca} ");
+                }
             }
         }
 
