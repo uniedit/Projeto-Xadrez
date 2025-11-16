@@ -18,6 +18,22 @@
             QteMovimentos++;
         }
 
+        public bool ExisteMovimentosPossiveis() {
+            bool[,] mat = MovimentosPossiveis();
+            for (int c = 0; c < Tab.Linhas; c++) {
+                for (int l = 0; l < Tab.Colunas; l++) {
+                    if (mat[c,l]) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool PodeMoverPara(Posicao pos) {
+            return MovimentosPossiveis()[pos.Linha, pos.Coluna];
+        }
+
         // Método abstrato devido a que qualquer peça tem movimentos possiveis diferentes um dos outros
         public abstract bool[,] MovimentosPossiveis();
 
