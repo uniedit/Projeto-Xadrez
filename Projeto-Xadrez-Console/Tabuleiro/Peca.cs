@@ -18,6 +18,10 @@
             QteMovimentos++;
         }
 
+        public void DecrementarQteMovimentos() {
+            QteMovimentos--;
+        }
+
         public bool ExisteMovimentosPossiveis() {
             bool[,] mat = MovimentosPossiveis();
             for (int c = 0; c < Tab.Linhas; c++) {
