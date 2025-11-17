@@ -36,10 +36,11 @@ namespace Projeto_Xadrez_Console {
                         Console.Write($"ERRO: {err.Message} ");
                         Console.ReadLine();
                     }
-
                 }
 
-                Tela.ImprimirTabuleiro(partida.Tab);
+                Console.Clear();
+                Tela.ImprimirPartida(partida);
+
             } catch (TabuleiroException err) {
                 Console.WriteLine();
                 Console.Write($"ERRO: {err.Message} ");
